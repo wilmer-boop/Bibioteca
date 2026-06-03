@@ -19,7 +19,7 @@
         this.nacionalidad = nacionalidad;
     }
 
-    // Métodos de Lectura (Getters)
+    // Métodos de Lectura 
     public String getNombre() {
         return nombre;
     }

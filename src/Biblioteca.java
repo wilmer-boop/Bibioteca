@@ -16,14 +16,8 @@ import java.util.List;
 public class Biblioteca {
     private String nombre;
     private String direccion;
-    private List<Libro> catalogo;
+    private List<Recurso> catalogo; 
     private List<Prestamo> prestamos;
-
-    // Constructores
-    public Biblioteca() {
-        this.catalogo = new ArrayList<>();
-        this.prestamos = new ArrayList<>();
-    }
 
     public Biblioteca(String nombre, String direccion) {
         this.nombre = nombre;
@@ -32,28 +26,13 @@ public class Biblioteca {
         this.prestamos = new ArrayList<>(); 
     }
 
-    // Métodos de Lectura y Escritura 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getNombre() { return nombre; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    // catálogo de libros
-    public void agregarLibro(Libro libro) {
-        if (libro != null) {
-            catalogo.add(libro);
-            System.out.println("OK -> Libro agregado: " + libro.getTitulo());
+    // remplazamos  "Recurso" en lugar de solo "Libro"
+    public void agregarRecurso(Recurso recurso) {
+        if (recurso != null) {
+            catalogo.add(recurso);
+            System.out.println("OK -> Agregado al catálogo: " + recurso.getTitulo());
         }
     }
 
@@ -64,23 +43,14 @@ public class Biblioteca {
         }
     }
 
-    //préstamos con control de encapsulamiento
-    public void registrarPrestamo(Usuario u, Libro l, String f1, String f2) {
-        if (l.isDisponible()) {
-            Prestamo p = new Prestamo(u, l, f1, f2);
+    public void registrarPrestamo(Usuario u, Recurso r, String f1, String f2) {
+        if (r.isDisponible()) {
+            Prestamo p = new Prestamo(u, r, f1, f2);
             prestamos.add(p);
-            l.setDisponible(false); 
-            System.out.println("Préstamo registrado correctamente para: " + u.getNombre());
+            r.setDisponible(false);
+            System.out.println("Préstamo registrado: '" + r.getTitulo() + "' para " + u.getNombre());
         } else {
-            System.out.println("ERROR: El libro '" + l.getTitulo() + "' NO está disponible para préstamo.");
-        }
-    }
-
-    public void mostrarPrestamos() {
-        System.out.println("\n--- Lista de préstamos activos ---");
-        for (Prestamo prestamo : prestamos) {
-            prestamo.mostrarPrestamo();
-            System.out.println("-------------------");
+            System.out.println("ERROR: '" + r.getTitulo() + "' no está disponible.");
         }
     }
 }

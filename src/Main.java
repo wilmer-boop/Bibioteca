@@ -10,58 +10,30 @@
  *
  * @author wilmer
  */
-
 public class Main {
     public static void main(String[] args) {
         Biblioteca biblioFCC = new Biblioteca("Biblioteca FCC", "Vargas Machuca");
 
-        // Crear autores
+        //Crear Autores
         Autor autor1 = new Autor("Robert C. Martin", "USA");
-        Autor autor2 = new Autor("Eric Gamma", "Suiza");
-        Autor autor3 = new Autor("Sebas Gifind", "Nigeria");
-        Autor autor4 = new Autor("Luis Galarza", "Canada");
 
-        // Crear libros y asignar autores
+        //Crear un LIBRO
         Libro libro1 = new Libro("Clean Code", "1234", 2024);
         libro1.agregarAutor(autor1);
 
-        Libro libro2 = new Libro("Design Patterns", "321", 2026);
-        libro2.agregarAutor(autor2);
+        //Crear una REVISTA 
+        Revista revista1 = new Revista("National Geographic", "7777", 2026, 142);
 
-        Libro libro3 = new Libro("Física", "098", 2010);
-        libro3.agregarAutor(autor3);
-
-        Libro libro4 = new Libro("Integer", "4579", 2009);
-        libro4.agregarAutor(autor4);
-
-        // Agregar libros a la biblioteca
-        biblioFCC.agregarLibro(libro1);
-        biblioFCC.agregarLibro(libro2);
-        biblioFCC.agregarLibro(libro3);
-        biblioFCC.agregarLibro(libro4);
-
-        // Mostrar catálogo inicial
+        //Agregar ambos al catálogo de la biblioteca
+        biblioFCC.agregarRecurso(libro1);
+        biblioFCC.agregarRecurso(revista1);
         biblioFCC.mostrarCatalogo();
-
-        // ---------------- USUARIOS ----------------
+        //prestar 
         Usuario u1 = new Usuario("Juan", 101);
-        Usuario u2 = new Usuario("Maria", 202);
-
-        System.out.println("\nUsuarios creados:");
-        u1.mostrarUsuario();
-        u2.mostrarUsuario();
-
-        // ---------------- PRESTAMOS ----------------
-        System.out.println("\n----- PROCESANDO PRESTAMOS -----");
-
-        // Primer préstamo 
-        biblioFCC.registrarPrestamo(u1, libro1, "10/04/2026", "20/04/2026");
+        System.out.println("\n--- Procesando Préstamos ---");
+        biblioFCC.registrarPrestamo(u1, revista1, "02/06/2026", "09/06/2026");
         
-        // Intento de préstamo del mismo libro a Maria
-        biblioFCC.registrarPrestamo(u2, libro1, "11/04/2026", "21/04/2026");
-
-        // Mostrar préstamos realizados y catálogo actualizado
-        biblioFCC.mostrarPrestamos();
+        // Mostrar catálogo final 
         biblioFCC.mostrarCatalogo();
     }
 }
